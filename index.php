@@ -1,7 +1,6 @@
 <?php
 namespace app;
 use app\db\PDOConnection;
-use app\models\UserModel;
 
 spl_autoload_register(function($class)
 {
@@ -16,9 +15,5 @@ $connection = new PDOConnection($config);
 
 $pdo = $connection->getConnection();
 
-$user = new UserModel($pdo);
 
-$result = $user->findAll();
-
-echo '<pre>';
-var_dump($result);
+Route::start($pdo);

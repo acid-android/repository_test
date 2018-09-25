@@ -5,11 +5,16 @@ namespace app\models;
 
 class UserModel extends PDOUserModel
 {
-    private $id;
-    private $name;
-    private $surName;
-    private $email;
+    public $id;
+    public $name;
+    public $surName;
+    public $email;
 
 
-    
+    public function save($user)
+    {
+        parent::save($user);
+    }
+
+
 }

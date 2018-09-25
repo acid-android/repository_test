@@ -3,7 +3,6 @@
 namespace app\interfaces;
 
 
-use app\models\UserModel;
 
 interface UserModelInterface
 {
@@ -11,8 +10,8 @@ interface UserModelInterface
 
     public function findAll();
 
-    public function save(UserModel $user);
+    public function save($user);
 
-    public function delete(UserModel $user);
+    public function delete($user);
 
 }

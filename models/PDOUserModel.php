@@ -41,13 +41,31 @@ class PDOUserModel implements UserModelInterface
         return $result;
     }
 
-    public function save(UserModel $user)
+    public function save($user)
     {
-        // TODO: Implement save() method.
+        if(!$user->id){
+            $stmt = $this->connection->prepare("INSERT INTO users(name, surname, email) VALUES (:name, :surname, :email) ");
+            $stmt->execute([
+                'name' => $user->name,
+                'surname' => $user->surName,
+                'email' => $user->email
+            ]);
+
+        } else {
+            $stmt = $this->connection->prepare("UPDATE users SET name = :name, surname = :surname, email = :email WHERE id = :id");
+            $stmt->execute([
+                'id' => $user->id,
+                'name' => $user->name,
+                'surname' => $user->surname,
+                'email' => $user->email
+            ]);
+
+        }
     }
-    public function delete(UserModel $user)
+    public function delete($user)
     {
-        // TODO: Implement delete() method.
+        $stmt = $this->connection->prepare("DELETE FROM users WHERE id = :id");
+        $stmt->execute(['id' => $user->id]);
     }
 
 }
